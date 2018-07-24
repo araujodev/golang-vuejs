@@ -13,7 +13,7 @@ func Find(DB *xorm.Engine, findBy interface{}, objects interface{}) error {
 	return DB.Find(objects, findBy)
 }
 
-func Find(DB *xorm.Engine, model interface{}) (err error) {
+func FindBy(DB *xorm.Engine, model interface{}) (err error) {
 	_, err = DB.Get(model)
 	return
 }

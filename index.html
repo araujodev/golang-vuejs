@@ -1,0 +1,36 @@
+<html>
+
+    <head>
+        <title> Rest API Auth Login in Go! </title>
+        <style>
+            .align-center{
+                text-align: center;
+                width: 400px;
+                margin: 100px auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="align-center">
+            <h1> Login Rest API GO! </h1>
+            <hr>
+            <form action="http://localhost:8080/auth/login" method="POST">
+                <div>
+                    <label> Email </label><br>
+                    <input type="email" name="email" id="email">
+                </div>
+                <br>
+                <div>
+                    <label> Password </label><br>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div>
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+
+        </div>
+    </body>
+
+</html>
