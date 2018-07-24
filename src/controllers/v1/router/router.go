@@ -10,6 +10,15 @@ import (
 
 func Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		//Token Get From HTTP Headers
+		token := r.Header.Get("X-App-Token")
+		if len(token) < 1 {
+			http.Error(w, "Not Authorized", http.StatusUnauthorized)
+			return
+		}
+		//#END Token Get From HTTP Headers
+
 		next.ServeHTTP(w, r)
 	})
 }
