@@ -3,13 +3,14 @@ package router
 import (
 	"github.com/araujodev/golang-vuejs/pkg/types/routes"
 	V1SubRoutes "github.com/araujodev/golang-vuejs/src/controllers/v1/router"
+	"github.com/go-xorm/xorm"
 	"github.com/gorilla/mux"
 )
 
-func (r *Router) Init() {
+func (r *Router) Init(db *xorm.Engine) {
 	r.Router.Use(Middleware)
 
-	baseRotues := GetRoutes()
+	baseRotues := GetRoutes(db)
 	for _, route := range baseRotues {
 		r.Router.
 			Methods(route.Method).
@@ -18,7 +19,7 @@ func (r *Router) Init() {
 			Handler(route.HandlerFunc)
 	}
 
-	v1SubRoutes := V1SubRoutes.GetRoutes()
+	v1SubRoutes := V1SubRoutes.GetRoutes(db)
 	for name, pack := range v1SubRoutes {
 		r.AttachSubRouterWithMiddleware(name, pack.Routes, pack.Middleware)
 	}

@@ -3,6 +3,8 @@ package router
 import (
 	"net/http"
 
+	"github.com/go-xorm/xorm"
+
 	"github.com/araujodev/golang-vuejs/pkg/types/routes"
 	HomeHandler "github.com/araujodev/golang-vuejs/src/controllers/home"
 )
@@ -13,7 +15,9 @@ func Middleware(next http.Handler) http.Handler {
 	})
 }
 
-func GetRoutes() routes.Routes {
+func GetRoutes(db *xorm.Engine) routes.Routes {
+
+	HomeHandler.Init(db)
 
 	return routes.Routes{
 		routes.Route{"Home", "GET", "/", HomeHandler.Index},

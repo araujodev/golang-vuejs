@@ -32,7 +32,7 @@ func (s *Server) Start() {
 	log.Println("Començando servidor em " + s.port)
 
 	r := router.NewRouter()
-	r.Init()
+	r.Init(s.Db)
 
 	handler := handlers.LoggingHandler(os.Stdout, handlers.CORS(
 		handlers.AllowedOrigins([]string{"*"}),
